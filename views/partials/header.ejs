@@ -6,11 +6,21 @@
   </head>
   <body>
     <nav>
-        <a href="/">Home</a>
-        <a href="/recipes">Browse Recipes</a>
+      <div id="nav-links">
         <% if (user) { %>
-          <a href="/logout">LOG OUT</a>
-        <% } else { %>
-          <a href="/auth/google" class="login">LOG IN&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
-        <% } %>
+          <img src="<%= user.avatar %>" alt="logo" id="nav-logo">
+          <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/recipes">Browse Recipes</a>
+            <a href="/logout">log out</a>
+          </div>
+          <% } else { %>
+            <img src="/assets/images/logo.svg" alt="logo" id="nav-logo">
+            <div class="nav-links">
+              <a href="/">Home</a>
+              <a href="/recipes">Browse Recipes</a>
+              <a href="/auth/google" class="login">log in&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+            </div>
+            <% } %>
+      </div>
     </nav>

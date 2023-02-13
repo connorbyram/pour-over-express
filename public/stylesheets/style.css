@@ -1,6 +1,36 @@
 body {
-  padding: 50px;
+  margin: 0;
+  padding: 0;
+  display: flex;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+nav {
+  padding: 20px 50px 20px 20px;
+  height: 100vh;
+  width: auto;
+  display: inline;
+  flex-direction: column;
+  background-color: #45474B;
+}
+
+#nav-logo {
+  margin: 0 0 15px 0;
+  height: 50px;
+  width: 50px;
+  border-radius: 20px;
+}
+
+.nav-links {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-links > a {
+  margin-bottom: 10px;
+  color: #D4AF51;
+  font-size: 18px;
 }
 
 a {
@@ -9,11 +39,29 @@ a {
 
 .login {
   display: flex;
-  justify-content: center;
   align-items: center;
   height: 34px;
 }
 
 .login img {
   height: 30px;
+}
+
+.main {
+  height: 100vh;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+section {
+  padding: 20px;
+  background-color: #143664;
+}
+
+.container {
+  height: 100px;
+  padding: 20px 60px;
+  background-color: white;
 }
