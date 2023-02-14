@@ -4,7 +4,17 @@ module.exports = {
     index,
     show,
     new: newRecipe,
-    create
+    create,
+    delete: deleteRecipe
+}
+
+function deleteRecipe(req, res) {
+    Recipe.findOneAndDelete(
+        { _id: req.params.id, user: req.user._id },
+        function (err) {
+            res.redirect("/recipes");
+        }
+    );
 }
 
 function create(req, res) {
@@ -30,7 +40,7 @@ function show(req, res){
     Recipe.findById(req.params.id)
         .populate('user')
         .exec(function(err, recipe) {
-        res.render('recipes/show', { title: 'Flight Detail', recipe });
+        res.render('recipes/show', { title: 'Recipe Details', recipe });
     });
 }
 

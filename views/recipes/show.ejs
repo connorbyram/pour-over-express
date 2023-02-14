@@ -6,6 +6,53 @@
             <h1>Recipe Deets</h1>
         </div>
     </section>
+    <section>
+        <div class="container">
+            <div id="user">
+                <img alt="avatar" id="user-img" src="<%= user.avatar %>" referrerpolicy="no-referrer">
+                <%= user.name %>
+            </div>
+            <h2><%= recipe.title %></h2>
+            <text id="date"><%= recipe.createdAt.toLocaleDateString() %></text>
+            <div class="recipe-data-item">
+                <strong>Roaster:</strong> <%= recipe.roaster %>
+            </div>
+            <div class="recipe-data-item">
+                <strong>Varietal:</strong> <%= recipe.beanVarietal %>
+            </div>
+            <div class="recipe-data-item">
+                <strong>Process:</strong> <%= recipe.processMethod %>
+            </div>
+            <div class="recipe-data-item">
+                <strong>Roast Level:</strong> <%= recipe.roastLevel %>
+            </div>
+            <div class="recipe-data-item">
+                <strong>Grind:</strong> <%= recipe.grindSize %>
+            </div>
+            <div class="recipe-data-item">
+                <strong>Coffee (g):</strong> <%= recipe.gramsCoffee %>
+            </div>
+            <div class="recipe-data-item">
+                <strong>Water (g):</strong> <%= recipe.gramsWater %>
+            </div>
+            <div class="recipe-data-item">
+                <strong>Temp:</strong> <%= recipe.waterTemp %><%=recipe.tempUnit%>
+            </div>
+            <div class="recipe-data-item">
+                <strong>Notes:</strong> <%= recipe.notes %>
+            </div>
+            <div>
+                <% if (user.googleId === recipe.user.googleId) { %>
+                    <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
+                        <button type="submit">X</button>
+                    </form>
+                    <a href="/recipes/<%= recipe._id %>/update">Tweak</a>
+                <% } %>
+            </div>
+          
+            
+        </div>
+    </section>
 </div>
 
 

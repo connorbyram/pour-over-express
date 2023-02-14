@@ -1,0 +1,86 @@
+<%- include('../partials/header') %>
+
+<div class="main">
+    <section>
+        <div class="container">
+            <h1>Create a Recipe</h1>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <form id="new-recipe" action="/recipes" method="POST">
+                <label >Title:</label>
+                <input type="text" name="title" value="<%= recipe.title %>">
+
+                <div id="bean-data">
+
+                    <label >Roaster:</label>
+                    <input type="text" name="roaster" value="<%= recipe.roaster %>">
+    
+                    <label >Varietal:</label>
+                    <select name="beanVarietal">
+                        <% bean.forEach(function(varietal, idx) { %>
+                            <option value="<%= varietal %>" <%= idx === 0? 'selected' : '' %>>
+                                <%= varietal %>
+                            </option>
+                        <% }); %>
+                    </select>
+                    
+                    <label >Process:</label>
+                    <select name="processMethod">
+                        <% process.forEach(function(method, idx) { %>
+                            <option value="<%= method %>" <%= idx === 0? 'selected' : '' %>>
+                                <%= method %>
+                            </option>
+                        <% }); %>
+                    </select>
+                    
+                    <label >Roast Level:</label>
+                    <select name="roastLevel">
+                        <% roast.forEach(function(level, idx) { %>
+                            <option value="<%= level %>" <%= idx === 0? 'selected' : '' %>>
+                                <%= level %>
+                            </option>
+                        <% }); %>
+                    </select>
+                </div>
+
+                <div id="recipe-data">
+                    <label >Grind Size:</label>
+                    <select name="grindSize">
+                        <% grind.forEach(function(size, idx) { %>
+                            <option value="<%= size %>" <%= idx === 0? 'selected' : '' %>>
+                                <%= size %>
+                            </option>
+                        <% }); %>
+                    </select>
+    
+                    <label >Coffee(g):</label>
+                    <input type="number" name="gramsCoffee" value="<%= recipe.gramsCoffee %>">
+    
+                    <label >Water(g):</label>
+                    <input type="number" name="gramsWater" value="<%= recipe.gramsWater %>">
+                    
+                    <label >Water Temp.:</label>
+                    <input type="number" name="waterTemp" value="<%= recipe.waterTemp %>">
+                    <select name="tempUnit" id="tempUnit" value="<%= recipe.tempUnit %>">
+                        <option value="°F">°F</option>
+                        <option value="°C">°C</option>
+                        <option value="Kelvin">Kelvin</option>
+                    </select>
+                    
+                    <label >Notes:</label>
+                    <textarea name="notes" id="notes" cols="30" rows="10">Give us relevant information on your process- e.g. "50g bloom, at 30s 150g of water, etc</textarea>
+                    <label>Post to Public Board</label>
+                    <input type="checkbox" name="public">
+                </div>
+                
+                <button type="submit">Add Recipe</button>
+            </form>
+
+        </div>
+    </section>
+</div>
+
+
+<%- include('../partials/footer') %>

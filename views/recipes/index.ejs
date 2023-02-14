@@ -16,7 +16,8 @@
                             <%= user.name %>
                         </div>
                         <h2><%= r.title %></h2>
-                        <text id="date"><%= r.createdAt.toLocaleDateString() %></text> 
+                        <text id="date"><%= r.createdAt.toLocaleDateString() %></text>
+                        <a href="/recipes/<%= r._id %>">DETAILS</a>
                     </div>
                 <% } %>
             <% }); %>
