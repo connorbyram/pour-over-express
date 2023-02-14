@@ -65,3 +65,8 @@ section {
   padding: 20px 60px;
   background-color: white;
 }
+
+form {
+  padding: 20px;
+  background-color: lightgray;
+}

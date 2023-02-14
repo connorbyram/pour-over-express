@@ -8,7 +8,11 @@ module.exports = {
 }
 
 function newRecipe(req, res) {
-    res.render('recipes/new', { title: 'New Recipe' } )
+    const bean = Recipe.schema.path('beanVariety').enumValues;
+    const process = Recipe.schema.path('processMethod').enumValues;
+    const roast = Recipe.schema.path('roastLevel').enumValues;
+    const grind = Recipe.schema.path('grindSize').enumValues;
+    res.render('recipes/new', { title: 'New Recipe', bean, process, roast, grind } )
 }
 
 function show(req, res){
