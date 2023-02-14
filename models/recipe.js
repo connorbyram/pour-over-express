@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const recipeSchema = new Schema({
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }, 
     title: {
         type: String,
         default: function() {
@@ -12,7 +17,7 @@ const recipeSchema = new Schema({
     roaster: {
         type: String
     },
-    beanVariety: {
+    beanVarietal: {
         type: String,
         enum: [
             'Arusha',
@@ -99,8 +104,16 @@ const recipeSchema = new Schema({
         type: Number,
         required: true
     },
+    tempUnit: {
+        type: String,
+        required: true
+    },
     notes: {
         type: String
+    },
+    public: {
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: true

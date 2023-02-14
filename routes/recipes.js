@@ -7,6 +7,8 @@ const ensureLoggedIn = require('../config/ensureLoggedIn');
 router.get('/', ensureLoggedIn, recipesCtrl.index);
 // GET /recipes/new
 router.get('/new', ensureLoggedIn, recipesCtrl.new);
+// POST /recipes
+router.post('/', recipesCtrl.create);
 
 
 module.exports = router;

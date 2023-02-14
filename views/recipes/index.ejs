@@ -6,6 +6,23 @@
             <h1>Browse Recipes</h1>
         </div>
     </section>
+    <section>
+        <div class="container">
+            <% recipes.forEach(function(r) { %>
+                <% if(r.public) { %>
+                    <div class="recipe-preview">
+                        <div id="user">
+                            <img alt="avatar" id="user-img" src="<%= user.avatar %>" referrerpolicy="no-referrer">
+                            <%= user.name %>
+                        </div>
+                        <h2><%= r.title %></h2>
+                        <text id="date"><%= r.createdAt.toLocaleDateString() %></text> 
+                    </div>
+                <% } %>
+            <% }); %>
+
+        </div>
+    </section>
 </div>
 
 

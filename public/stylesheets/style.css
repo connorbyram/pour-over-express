@@ -9,6 +9,7 @@ nav {
   padding: 20px 50px 20px 20px;
   height: 100vh;
   width: auto;
+  min-width: 150px;
   display: inline;
   flex-direction: column;
   background-color: #45474B;
@@ -19,6 +20,13 @@ nav {
   height: 50px;
   width: 50px;
   border-radius: 20px;
+}
+
+#user-img {
+  margin: 0 0 15px 0;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
 }
 
 .nav-links {
