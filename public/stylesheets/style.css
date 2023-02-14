@@ -61,12 +61,12 @@ section {
 }
 
 .container {
-  height: 100px;
   padding: 20px 60px;
   background-color: white;
 }
 
 form {
   padding: 20px;
+  display: grid;
   background-color: lightgray;
 }
