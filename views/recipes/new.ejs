@@ -19,8 +19,9 @@
     
                     <label >Varietal:</label>
                     <select name="beanVarietal">
+                        <option disabled selected value>Select One...</option>
                         <% bean.forEach(function(varietal, idx) { %>
-                            <option value="<%= varietal %>" <%= idx === 0? 'selected' : '' %>>
+                            <option value="<%= varietal %>">
                                 <%= varietal %>
                             </option>
                         <% }); %>
@@ -28,8 +29,9 @@
                     
                     <label >Process:</label>
                     <select name="processMethod">
+                        <option disabled selected value>Select One...</option>
                         <% process.forEach(function(method, idx) { %>
-                            <option value="<%= method %>" <%= idx === 0? 'selected' : '' %>>
+                            <option value="<%= method %>">
                                 <%= method %>
                             </option>
                         <% }); %>
@@ -37,8 +39,9 @@
                     
                     <label >Roast Level:</label>
                     <select name="roastLevel">
+                        <option disabled selected value>Select One...</option>
                         <% roast.forEach(function(level, idx) { %>
-                            <option value="<%= level %>" <%= idx === 0? 'selected' : '' %>>
+                            <option value="<%= level %>">
                                 <%= level %>
                             </option>
                         <% }); %>
@@ -48,8 +51,9 @@
                 <div id="recipe-data">
                     <label >Grind Size:</label>
                     <select name="grindSize">
+                        <option disabled selected value>Select One...</option>
                         <% grind.forEach(function(size, idx) { %>
-                            <option value="<%= size %>" <%= idx === 0? 'selected' : '' %>>
+                            <option value="<%= size %>">
                                 <%= size %>
                             </option>
                         <% }); %>

@@ -8,7 +8,7 @@
     </section>
     <section>
         <div class="container">
-            <form id="new-recipe" action="/recipes" method="POST">
+            <form id="edit-recipe" action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
                 <label >Title:</label>
                 <input type="text" name="title" value="<%= recipe.title %>">
 
@@ -20,7 +20,7 @@
                     <label >Varietal:</label>
                     <select name="beanVarietal">
                         <% bean.forEach(function(varietal, idx) { %>
-                            <option value="<%= varietal %>" <%= idx === 0? 'selected' : '' %>>
+                            <option value="<%= varietal %>" <%= varietal === recipe.beanVarietal? 'selected' : '' %>>
                                 <%= varietal %>
                             </option>
                         <% }); %>
@@ -29,7 +29,7 @@
                     <label >Process:</label>
                     <select name="processMethod">
                         <% process.forEach(function(method, idx) { %>
-                            <option value="<%= method %>" <%= idx === 0? 'selected' : '' %>>
+                            <option value="<%= method %>" <%= method === recipe.processMethod? 'selected' : '' %>>
                                 <%= method %>
                             </option>
                         <% }); %>
@@ -38,7 +38,7 @@
                     <label >Roast Level:</label>
                     <select name="roastLevel">
                         <% roast.forEach(function(level, idx) { %>
-                            <option value="<%= level %>" <%= idx === 0? 'selected' : '' %>>
+                            <option value="<%= level %>" <%= level === recipe.roastLevel? 'selected' : '' %>>
                                 <%= level %>
                             </option>
                         <% }); %>
@@ -49,7 +49,7 @@
                     <label >Grind Size:</label>
                     <select name="grindSize">
                         <% grind.forEach(function(size, idx) { %>
-                            <option value="<%= size %>" <%= idx === 0? 'selected' : '' %>>
+                            <option value="<%= size %>" <%= size === recipe.grindSize? 'selected' : '' %>>
                                 <%= size %>
                             </option>
                         <% }); %>
@@ -70,12 +70,12 @@
                     </select>
                     
                     <label >Notes:</label>
-                    <textarea name="notes" id="notes" cols="30" rows="10">Give us relevant information on your process- e.g. "50g bloom, at 30s 150g of water, etc</textarea>
+                    <textarea name="notes" id="notes" cols="30" rows="10"><%= recipe.notes %></textarea>
                     <label>Post to Public Board</label>
-                    <input type="checkbox" name="public">
+                    <input type="checkbox" name="public" <%= recipe.public? 'checked' : '' %>>
                 </div>
                 
-                <button type="submit">Add Recipe</button>
+                <button type="submit">Update Recipe</button>
             </form>
 
         </div>

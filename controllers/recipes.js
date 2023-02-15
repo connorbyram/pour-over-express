@@ -5,7 +5,33 @@ module.exports = {
     show,
     new: newRecipe,
     create,
-    delete: deleteRecipe
+    delete: deleteRecipe,
+    edit,
+    update
+}
+
+function update(req, res){
+    req.body.public = !!req.body.public;
+    Recipe.findOneAndUpdate(
+        { _id: req.params.id, user: req.user._id },
+        req.body,
+        {new: true},
+        function(err, recipe) {
+            if (err || !recipe) return res.redirect('/recipes');
+            res.redirect(`/recipes/${recipe._id}`);
+        }
+    );
+}
+
+function edit(req, res) {
+    const bean = Recipe.schema.path('beanVarietal').enumValues;
+    const process = Recipe.schema.path('processMethod').enumValues;
+    const roast = Recipe.schema.path('roastLevel').enumValues;
+    const grind = Recipe.schema.path('grindSize').enumValues;
+    Recipe.findOne({_id: req.params.id, user: req.user._id}, 
+        function(err, recipe) {
+            res.render('recipes/edit', { title: 'Edit Recipe', bean, process, roast, grind, recipe } )
+    });
 }
 
 function deleteRecipe(req, res) {
