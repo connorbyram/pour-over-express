@@ -8,49 +8,92 @@
     </section>
     <section>
         <div class="container">
-            <div id="user">
-                <img alt="avatar" id="user-img" src="<%= user.avatar %>" referrerpolicy="no-referrer">
-                <%= user.name %>
+            <div class="main-div">
+                <div id="user-header">
+                    <img alt="avatar" id="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer">
+                    <div id="user-info">
+                        <div id="user-name"><%= user.name %></div>
+                        <text id="date"><%= recipe.createdAt.toLocaleDateString() %></text>
+                    </div>
+                </div>
+                <h2><%= recipe.title %></h2>
+                <div class="recipe-data-item">
+                    <strong>Roaster:</strong> <%= recipe.roaster %>
+                </div>
+                <div class="recipe-data-item">
+                    <strong>Varietal:</strong> <%= recipe.beanVarietal %>
+                </div>
+                <div class="recipe-data-item">
+                    <strong>Process:</strong> <%= recipe.processMethod %>
+                </div>
+                <div class="recipe-data-item">
+                    <strong>Roast Level:</strong> <%= recipe.roastLevel %>
+                </div>
+                <div class="recipe-data-item">
+                    <strong>Grind:</strong> <%= recipe.grindSize %>
+                </div>
+                <div class="recipe-data-item">
+                    <strong>Coffee (g):</strong> <%= recipe.gramsCoffee %>
+                </div>
+                <div class="recipe-data-item">
+                    <strong>Water (g):</strong> <%= recipe.gramsWater %>
+                </div>
+                <div class="recipe-data-item">
+                    <strong>Temp:</strong> <%= recipe.waterTemp %><%=recipe.tempUnit%>
+                </div>
+                <div class="recipe-data-item">
+                    <strong>Notes:</strong> <%= recipe.notes %>
+                </div>
+                <div>
+                    <% if (user.googleId === recipe.user.googleId) { %>
+                        <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
+                            <button type="submit">X</button>
+                        </form>
+                        <a href="/recipes/<%= recipe._id %>/edit">Tweak</a>
+                    <% } %>
+                </div>
             </div>
-            <h2><%= recipe.title %></h2>
-            <text id="date"><%= recipe.createdAt.toLocaleDateString() %></text>
-            <div class="recipe-data-item">
-                <strong>Roaster:</strong> <%= recipe.roaster %>
-            </div>
-            <div class="recipe-data-item">
-                <strong>Varietal:</strong> <%= recipe.beanVarietal %>
-            </div>
-            <div class="recipe-data-item">
-                <strong>Process:</strong> <%= recipe.processMethod %>
-            </div>
-            <div class="recipe-data-item">
-                <strong>Roast Level:</strong> <%= recipe.roastLevel %>
-            </div>
-            <div class="recipe-data-item">
-                <strong>Grind:</strong> <%= recipe.grindSize %>
-            </div>
-            <div class="recipe-data-item">
-                <strong>Coffee (g):</strong> <%= recipe.gramsCoffee %>
-            </div>
-            <div class="recipe-data-item">
-                <strong>Water (g):</strong> <%= recipe.gramsWater %>
-            </div>
-            <div class="recipe-data-item">
-                <strong>Temp:</strong> <%= recipe.waterTemp %><%=recipe.tempUnit%>
-            </div>
-            <div class="recipe-data-item">
-                <strong>Notes:</strong> <%= recipe.notes %>
-            </div>
-            <div>
-                <% if (user.googleId === recipe.user.googleId) { %>
-                    <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
-                        <button type="submit">X</button>
+        </div>
+    </section>
+    <section>
+        <div class="container">
+            <div class="main-div">
+                <h3>Ratings</h3>
+                5 out of 5 
+                <div id="reviews">
+                    <% if (recipe.reviews.length) { %>
+                        <% let total = 0 %>
+                        <% recipe.reviews.forEach(function(review) { %>
+                            <div id="user-header">
+                                <img alt="avatar" id="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer">
+                                <div id="user-info">
+                                    <div id="user-name"><%= user.name %></div>
+                                    <%= review.rating %> out of 5
+                                    <text id="date"><%= review.createdAt.toLocaleDateString() %></text>
+                                </div>
+                                <div class="comment"><%= review.comment %></div>
+                            </div>
+                        <% }); %>
+                    <% } else { %>
+                        No Reviews Yet
+                    <% } %>
+                </div>
+                <div id="create-review">
+                    <h3>Leave a Note:</h3>
+                    <form id="add-review-form" action="/recipes/<%= recipe._id %>/reviews" method="POST">
+                        <select name="rating">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5" selected>5</option>
+                        </select>
+                        <textarea name="comment" id="comment-box" rows="5">Be constructive...</textarea>
+                        <button class="button-main" type="submit">SUBMIT<img src="/assets/images/arrow-white.svg" class="arrow"></button>
                     </form>
-                    <a href="/recipes/<%= recipe._id %>/edit">Tweak</a>
-                <% } %>
+                </div>
             </div>
-          
-            
         </div>
     </section>
 </div>

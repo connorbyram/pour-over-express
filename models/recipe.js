@@ -1,6 +1,26 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const reviewSchema = new Schema({
+    comment: {
+        type: String,
+        required: true
+    },
+    rating: {
+        type: Number,
+        min: 0,
+        max: 5,
+        default: 5
+    },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+      },
+}, {
+    timestamps: true
+});
+
 const recipeSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
@@ -114,7 +134,8 @@ const recipeSchema = new Schema({
     public: {
         type: Boolean,
         default: false
-    }
+    },
+    reviews: [reviewSchema]
 }, {
     timestamps: true
 });

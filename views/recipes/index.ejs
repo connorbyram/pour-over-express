@@ -8,29 +8,33 @@
     </section>
     <section>
         <div class="container">
-            <% recipes.forEach(function(r) { %>
-                <% if(r.public) { %>
-                    <div class="recipe-preview">
-                        <div id="recipe-user">
-                            <img alt="avatar" id="user-img" src="<%= user.avatar %>" referrerpolicy="no-referrer">
-                            <div id="recipe-user-text">
-                                <div id="recipe-user-name">
+            <% recipes.forEach(function(recipe) { %>
+                <% if(recipe.public) { %>
+                    <div class="main-div">
+                        <div id="user-header">
+                            <img alt="avatar" id="avatar" 
+                                src="<%= user.avatar %>" 
+                                referrerpolicy="no-referrer">
+                            <div id="user-info">
+                                <div id="user-name">
                                     <%= user.name %>
                                 </div>
-                                <div id="recipe-user-date">
-                                    <text id="date"><%= r.createdAt.toLocaleDateString() %></text>
+                                <div id="created-date">
+                                    <text id="date"><%= recipe.createdAt.toLocaleDateString() %></text>
                                 </div>
                             </div>
                         </div>
-                        <h2><%= r.title %></h2>
+                        <h2><%= recipe.title %></h2>
                         <div class="recipe-bean-data">
-                            <strong>Roaster:</strong> <%= r.roaster %><br> 
-                            <strong>Varietal:</strong> <%= r.beanVarietal %><br>
-                            <strong>Process:</strong> <%= r.processMethod %><br> 
-                            <strong>Roast:</strong> <%= r.roastLevel %><br> 
+                            <strong>Roaster:</strong> <%= recipe.roaster %><br> 
+                            <strong>Varietal:</strong> <%= recipe.beanVarietal %><br>
+                            <strong>Process:</strong> <%= recipe.processMethod %><br> 
+                            <strong>Roast:</strong> <%= recipe.roastLevel %><br> 
                         </div>
 
-                        <a href="/recipes/<%= r._id %>" class="button-main">DETAILS <img src="/assets/images/arrow-black.png" alt=""></a>
+                        <a href="/recipes/<%= recipe._id %>" class="button-main">
+                            DETAILS <img src="/assets/images/arrow-white.svg" class="arrow">
+                        </a>
                     </div>
                 <% } %>
             <% }); %>
