@@ -11,17 +11,29 @@
             <% recipes.forEach(function(r) { %>
                 <% if(r.public) { %>
                     <div class="recipe-preview">
-                        <div id="user">
+                        <div id="recipe-user">
                             <img alt="avatar" id="user-img" src="<%= user.avatar %>" referrerpolicy="no-referrer">
-                            <%= user.name %>
+                            <div id="recipe-user-text">
+                                <div id="recipe-user-name">
+                                    <%= user.name %>
+                                </div>
+                                <div id="recipe-user-date">
+                                    <text id="date"><%= r.createdAt.toLocaleDateString() %></text>
+                                </div>
+                            </div>
                         </div>
                         <h2><%= r.title %></h2>
-                        <text id="date"><%= r.createdAt.toLocaleDateString() %></text>
-                        <a href="/recipes/<%= r._id %>">DETAILS</a>
+                        <div class="recipe-bean-data">
+                            <strong>Roaster:</strong> <%= r.roaster %><br> 
+                            <strong>Varietal:</strong> <%= r.beanVarietal %><br>
+                            <strong>Process:</strong> <%= r.processMethod %><br> 
+                            <strong>Roast:</strong> <%= r.roastLevel %><br> 
+                        </div>
+
+                        <a href="/recipes/<%= r._id %>" class="button-main">DETAILS <img src="/assets/images/arrow-black.png" alt=""></a>
                     </div>
                 <% } %>
             <% }); %>
-
         </div>
     </section>
 </div>
