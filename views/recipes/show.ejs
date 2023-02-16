@@ -3,16 +3,16 @@
 <div class="main">
     <section>
         <div class="container">
-            <h1>Recipe Deets</h1>
+            <div class="main-div">
+                <h1>Recipe Deets</h1>
+            </div>
         </div>
-    </section>
-    <section>
         <div class="container">
             <div class="main-div">
                 <div id="user-header">
-                    <img alt="avatar" id="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer">
+                    <img alt="avatar" id="avatar" src="<%= recipe.user.avatar %>" referrerpolicy="no-referrer">
                     <div id="user-info">
-                        <div id="user-name"><%= user.name %></div>
+                        <div id="user-name"><%= recipe.user.name %></div>
                         <text id="date"><%= recipe.createdAt.toLocaleDateString() %></text>
                     </div>
                 </div>
@@ -44,12 +44,12 @@
                 <div class="recipe-data-item">
                     <strong>Notes:</strong> <%= recipe.notes %>
                 </div>
-                <div>
+                <div class="button-grid">
                     <% if (user.googleId === recipe.user.googleId) { %>
-                        <form action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
-                            <button type="submit">X</button>
+                        <a class="button-main" href="/recipes/<%= recipe._id %>/edit">TWEAK<img src="/assets/images/arrow-white.svg" class="arrow"></a>
+                        <form class="delete-form" action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
+                            <button class="button-secondary" type="submit">DELETE<img src="/assets/images/arrow-white.svg" class="arrow"></button>
                         </form>
-                        <a href="/recipes/<%= recipe._id %>/edit">Tweak</a>
                     <% } %>
                 </div>
             </div>
@@ -58,30 +58,10 @@
     <section>
         <div class="container">
             <div class="main-div">
-                <h3>Ratings</h3>
-                5 out of 5 
-                <div id="reviews">
-                    <% if (recipe.reviews.length) { %>
-                        <% let total = 0 %>
-                        <% recipe.reviews.forEach(function(review) { %>
-                            <div id="user-header">
-                                <img alt="avatar" id="avatar" src="<%= user.avatar %>" referrerpolicy="no-referrer">
-                                <div id="user-info">
-                                    <div id="user-name"><%= user.name %></div>
-                                    <%= review.rating %> out of 5
-                                    <text id="date"><%= review.createdAt.toLocaleDateString() %></text>
-                                </div>
-                                <div class="comment"><%= review.comment %></div>
-                            </div>
-                        <% }); %>
-                    <% } else { %>
-                        No Reviews Yet
-                    <% } %>
-                </div>
                 <div id="create-review">
                     <h3>Leave a Note:</h3>
                     <form id="add-review-form" action="/recipes/<%= recipe._id %>/reviews" method="POST">
-                        <select name="rating">
+                        <select class="dropdown" name="rating">
                             <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -89,9 +69,39 @@
                             <option value="4">4</option>
                             <option value="5" selected>5</option>
                         </select>
-                        <textarea name="comment" id="comment-box" rows="5">Be constructive...</textarea>
+                        <textarea name="comment" id="comment-box" rows="5" placeholder="Be constructive..."></textarea>
                         <button class="button-main" type="submit">SUBMIT<img src="/assets/images/arrow-white.svg" class="arrow"></button>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="main-div">
+                <h3>Notes</h3>
+                5 out of 5 
+                <div id="reviews">
+                    <% if (recipe.reviews.length) { %>
+                        <% let total = 0 %>
+                        <% recipe.reviews.forEach(function(review) { %>
+                            <div id="user-header">
+                                <img alt="avatar" id="avatar" src="<%= review.user.avatar %>" referrerpolicy="no-referrer">
+                                <div id="user-info">
+                                    <div id="user-name"><%= review.user.name %></div>
+                                    <%= review.rating %> out of 5
+                                    <text id="date"><%= review.createdAt.toLocaleDateString() %></text>
+                                </div>
+                            </div>
+                            <div class="comment"><%= review.comment %></div>
+                            <% if (user.googleId === review.user.googleId) { %>
+                                <!-- <a class="button-main" href="/recipes/<%= recipe._id %>/edit">TWEAK<img src="/assets/images/arrow-white.svg" class="arrow"></a> -->
+                                <form class="delete-form" action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
+                                    <button class="button-secondary" type="submit">DELETE<img src="/assets/images/arrow-white.svg" class="arrow"></button>
+                                </form>
+                            <% } %>
+                        <% }); %>
+                    <% } else { %>
+                        No Reviews Yet
+                    <% } %>
                 </div>
             </div>
         </div>

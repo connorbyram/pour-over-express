@@ -3,25 +3,19 @@
 <div class="main">
     <section>
         <div class="container">
-            <h1>Browse Recipes</h1>
+            <div id="page-heading" class="main-div">
+                <h1>Browse Recipes</h1>
+            </div>
         </div>
-    </section>
-    <section>
         <div class="container">
             <% recipes.forEach(function(recipe) { %>
                 <% if(recipe.public) { %>
-                    <div class="main-div">
+                    <div id="recipe-preview" class="main-div">
                         <div id="user-header">
-                            <img alt="avatar" id="avatar" 
-                                src="<%= user.avatar %>" 
-                                referrerpolicy="no-referrer">
+                            <img alt="avatar" id="avatar" src="<%= recipe.user.avatar %>" referrerpolicy="no-referrer">
                             <div id="user-info">
-                                <div id="user-name">
-                                    <%= user.name %>
-                                </div>
-                                <div id="created-date">
-                                    <text id="date"><%= recipe.createdAt.toLocaleDateString() %></text>
-                                </div>
+                                <div id="user-name"><%= recipe.user.name %></div>
+                                <text id="date"><%= recipe.createdAt.toLocaleDateString() %></text>
                             </div>
                         </div>
                         <h2><%= recipe.title %></h2>
