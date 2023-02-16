@@ -1,7 +1,23 @@
 const Recipe = require('../models/recipe');
 
 module.exports = {
-    create
+    create,
+    delete: deleteReview
+}
+
+function deleteReview(req, res, next) {
+    Recipe.findOne({
+        'reviews._id': req.params.id,
+        'reviews.user': req.user._id
+    }).then(function(recipe) {
+        if (!recipe) return res.redirect(`/recipes/${recipe._id}`);
+        recipe.reviews.remove(req.params.id);
+        recipe.save().then(function() {
+            res.redirect(`/recipes/${recipe._id}`);
+        }).catch(function(err) {
+            return next(err);
+        });
+    });
 }
 
 function create(req, res) {
