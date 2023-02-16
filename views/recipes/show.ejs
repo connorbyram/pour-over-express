@@ -84,15 +84,15 @@
                         <% let total = 0 %>
                         <% recipe.reviews.forEach(function(review) { %>
                             <div id="user-header">
-                                <img alt="avatar" id="avatar" src="<%= review.user.avatar %>" referrerpolicy="no-referrer">
+                                <img alt="avatar" id="avatar" src="<%= review.userAvatar %>" referrerpolicy="no-referrer">
                                 <div id="user-info">
-                                    <div id="user-name"><%= review.user.name %></div>
+                                    <div id="user-name"><%= review.userName %></div>
                                     <%= review.rating %> out of 5
                                     <text id="date"><%= review.createdAt.toLocaleDateString() %></text>
                                 </div>
                             </div>
                             <div class="comment"><%= review.comment %></div>
-                            <% if (user.googleId === review.user.googleId) { %>
+                            <% if (user?._id.equals(review.user)) { %>
                                 <!-- <a class="button-main" href="/recipes/<%= recipe._id %>/edit">TWEAK<img src="/assets/images/arrow-white.svg" class="arrow"></a> -->
                                 <form class="delete-form" action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
                                     <button class="button-secondary" type="submit">DELETE<img src="/assets/images/arrow-white.svg" class="arrow"></button>
