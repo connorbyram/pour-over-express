@@ -1,7 +1,6 @@
  # Pour Over Express
 
   ## Introduction
-  ---
 
 Welcome to P/E, a logbook for pour-over enthusiasts. This project was born out of my love for coffee and my desire to continually improve my process. 
 
@@ -10,7 +9,7 @@ This app allows you to log your own pour-over recipes as well as view and rate o
 <br>
 
 ## Screen Shots  
----
+
 <img src="public/assets/images/ss1.png">
 <img src="public/assets/images/ss2.png">
 <img src="public/assets/images/ss3.png">
@@ -20,7 +19,7 @@ This app allows you to log your own pour-over recipes as well as view and rate o
 <br>
 
 ## Technologies
----
+
   ![Trello](https://img.shields.io/badge/-Trello-C49622?style=flat&logo=trello&logoColor=black)
   ![Figma](https://img.shields.io/badge/-Figma-C49622?style=flat&logo=figma&logoColor=black)
   ![Canva](https://img.shields.io/badge/-Canva-C49622?style=flat&logo=canva&logoColor=black)
@@ -44,7 +43,7 @@ This app allows you to log your own pour-over recipes as well as view and rate o
 <br>
 
 ## Getting Started
----
+
 [Deploy App](https://pour-over-express.herokuapp.com/)
 
 [View Project Planning](https://trello.com/b/qDd1G8fX/pour-over-express)
@@ -52,7 +51,7 @@ This app allows you to log your own pour-over recipes as well as view and rate o
 <br>
 
 ## Next Steps
----
+
 - Mobile optimization
 - Add a recipe to a favorites list
 - User pages that show user-created recipes and favorited recipes
