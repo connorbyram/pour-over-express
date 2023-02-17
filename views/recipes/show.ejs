@@ -64,10 +64,8 @@
         </div>
         <div class="container">
             <div class="main-div">
-                <h3>Notes</h3>
-                5 out of 5 
+                <h2>Notes</h2>
                 <% if (recipe.reviews.length) { %>
-                    <% let total = 0 %>
                     <% recipe.reviews.forEach(function(review) { %>
                         <div id="review">
                             <div id="user-header">
@@ -76,9 +74,9 @@
                                     <div id="user-name"><%= review.userName %></div>
                                     <%= review.rating %> out of 5
                                     <text id="date"><%= review.createdAt.toLocaleDateString() %></text>
+                                    <div class="comment"><%= review.comment %></div>
                                 </div>
                             </div>
-                            <div class="comment"><%= review.comment %></div>
                             <% if (user?._id.equals(review.user)) { %>
                                 <form class="delete-form" action="/reviews/<%= review._id %>?_method=DELETE" method="POST">
                                     <button class="button-secondary" type="submit"></button>
