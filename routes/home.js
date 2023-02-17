@@ -5,7 +5,7 @@ const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('home', { title: 'Express' });
+  res.render('home', { title: 'Pour Over' });
 });
 
 router.get('/auth/google', passport.authenticate(
@@ -17,13 +17,17 @@ router.get('/auth/google', passport.authenticate(
   }
 ));
 
-router.get('/oauth2callback', passport.authenticate(
-  'google',
-  {
-    successRedirect: '/',
-    failureRedirect: '/'
-  }
-));
+router.get('/oauth2callback', function (req, res, next) {
+  const redirectTo = req.session.redirectTo;
+  delete req.session.redirectTo;
+  passport.authenticate(
+    'google',
+    {
+      successRedirect: redirectTo || '/', //-> replace '/' as desired
+      failureRedirect: '/'
+    }
+  )(req, res, next);  // Call the middleware returned by passport
+});
 
 router.get('/logout', function(req, res) {
   req.logout(function() {
