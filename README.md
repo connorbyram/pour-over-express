@@ -19,11 +19,12 @@ This app allows you to log your own pour-over recipes as well as view and rate o
 <br>
 
 ## Technologies
-
+##### Ideation & Design
   ![Trello](https://img.shields.io/badge/-Trello-C49622?style=flat&logo=trello&logoColor=black)
   ![Figma](https://img.shields.io/badge/-Figma-C49622?style=flat&logo=figma&logoColor=black)
   ![Canva](https://img.shields.io/badge/-Canva-C49622?style=flat&logo=canva&logoColor=black)
 
+##### Development
   ![VSCode](https://img.shields.io/badge/-VS_Code-C49622?style=flat&logo=visualstudio&logoColor=black)
 
   ![HTML5](https://img.shields.io/badge/-HTML5-C49622?style=flat&logo=html5&logoColor=black)
@@ -33,9 +34,11 @@ This app allows you to log your own pour-over recipes as well as view and rate o
   ![Express](https://img.shields.io/badge/-Express-C49622?style=flat&logo=express&logoColor=black)
   ![Node](https://img.shields.io/badge/-Node.js-C49622?style=flat&logo=node.js&logoColor=black)
 
+##### Data
   ![MongoDB](https://img.shields.io/badge/-MongoDB-C49622?style=flat&logo=mongodb&logoColor=black)
   ![Mongoose](https://img.shields.io/badge/-Mongoose_ODM-C49622?style=flat&logo=mongodb&logoColor=black)
 
+##### Deployment
   ![Git](https://img.shields.io/badge/-Git-C49622?style=flat&logo=git&logoColor=black)
   ![Github](https://img.shields.io/badge/-GitHub-C49622?style=flat&logo=github&logoColor=black)
   ![Heroku](https://img.shields.io/badge/-Heroku-C49622?style=flat&logo=heroku&logoColor=black)
