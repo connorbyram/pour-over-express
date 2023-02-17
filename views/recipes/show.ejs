@@ -4,52 +4,39 @@
     <section>
         <div class="container">
             <div class="main-div">
-                <h1>Recipe Deets</h1>
+                <div id="user-header">
+                    <img alt="avatar" id="avatar" src="<%= recipe.user.avatar %>" referrerpolicy="no-referrer">
+                    <div class="title-data">
+                        <h1><%= recipe.title %></h1>
+                        <h4><%= recipe.user.name %> | <%= recipe.createdAt.toLocaleDateString() %></h4>
+                    </div>
+                </div>
+                <% if (user.equals(recipe.user)) { %>
+                    <form class="delete-form" action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
+                        <button class="button-secondary" type="submit"></button>
+                    </form>
+                <% } %>
             </div>
         </div>
         <div class="container">
             <div class="main-div">
-                <div id="user-header">
-                    <img alt="avatar" id="avatar" src="<%= recipe.user.avatar %>" referrerpolicy="no-referrer">
-                    <div id="user-info">
-                        <div id="user-name"><%= recipe.user.name %></div>
-                        <text id="date"><%= recipe.createdAt.toLocaleDateString() %></text>
-                    </div>
+                <div class="bean-data">
+                    <h3><%= recipe.roaster %></h3>
+                    <h2><%= recipe.beanVarietal %></h2>
+                    <h4><%= recipe.processMethod %> | <%= recipe.roastLevel %></h4>
                 </div>
-                <h2><%= recipe.title %></h2>
-                <div class="recipe-data-item">
-                    <strong>Roaster:</strong> <%= recipe.roaster %>
-                </div>
-                <div class="recipe-data-item">
-                    <strong>Varietal:</strong> <%= recipe.beanVarietal %>
-                </div>
-                <div class="recipe-data-item">
-                    <strong>Process:</strong> <%= recipe.processMethod %>
-                </div>
-                <div class="recipe-data-item">
-                    <strong>Roast Level:</strong> <%= recipe.roastLevel %>
-                </div>
-                <div class="recipe-data-item">
-                    <strong>Grind:</strong> <%= recipe.grindSize %>
-                </div>
-                <div class="recipe-data-item">
-                    <strong>Coffee (g):</strong> <%= recipe.gramsCoffee %>
-                </div>
-                <div class="recipe-data-item">
-                    <strong>Water (g):</strong> <%= recipe.gramsWater %>
-                </div>
-                <div class="recipe-data-item">
-                    <strong>Temp:</strong> <%= recipe.waterTemp %><%=recipe.tempUnit%>
+                <div class="recipe-data">
+                    <div><strong>Grind:</strong> <%= recipe.grindSize %></div>
+                    <div><strong>Coffee:</strong> <%= recipe.gramsCoffee %>g</div>
+                    <div><strong>Water:</strong> <%= recipe.gramsWater %>g</div>
+                    <div><strong>Temp:</strong> <%= recipe.waterTemp %><%=recipe.tempUnit%></div>
                 </div>
                 <div class="recipe-data-item">
                     <strong>Notes:</strong> <%= recipe.notes %>
                 </div>
                 <div class="button-grid">
-                    <% if (user.googleId === recipe.user.googleId) { %>
+                    <% if (user.equals(recipe.user)) { %>
                         <a class="button-main" href="/recipes/<%= recipe._id %>/edit">TWEAK<img src="/assets/images/arrow-white.svg" class="arrow"></a>
-                        <form class="delete-form" action="/recipes/<%= recipe._id %>?_method=DELETE" method="POST">
-                            <button class="button-secondary" type="submit">DELETE<img src="/assets/images/arrow-white.svg" class="arrow"></button>
-                        </form>
                     <% } %>
                 </div>
             </div>
@@ -69,7 +56,7 @@
                             <option value="4">4</option>
                             <option value="5" selected>5</option>
                         </select>
-                        <textarea name="comment" id="comment-box" rows="5" placeholder="Be constructive..."></textarea>
+                        <textarea name="comment" class="comment-box" rows="5" placeholder="Be constructive..."></textarea>
                         <button class="button-main" type="submit">SUBMIT<img src="/assets/images/arrow-white.svg" class="arrow"></button>
                     </form>
                 </div>
@@ -79,10 +66,10 @@
             <div class="main-div">
                 <h3>Notes</h3>
                 5 out of 5 
-                <div id="reviews">
-                    <% if (recipe.reviews.length) { %>
-                        <% let total = 0 %>
-                        <% recipe.reviews.forEach(function(review) { %>
+                <% if (recipe.reviews.length) { %>
+                    <% let total = 0 %>
+                    <% recipe.reviews.forEach(function(review) { %>
+                        <div id="review">
                             <div id="user-header">
                                 <img alt="avatar" id="avatar" src="<%= review.userAvatar %>" referrerpolicy="no-referrer">
                                 <div id="user-info">
@@ -93,16 +80,15 @@
                             </div>
                             <div class="comment"><%= review.comment %></div>
                             <% if (user?._id.equals(review.user)) { %>
-                                <!-- <a class="button-main" href="/recipes/<%= recipe._id %>/edit">TWEAK<img src="/assets/images/arrow-white.svg" class="arrow"></a> -->
                                 <form class="delete-form" action="/reviews/<%= review._id %>?_method=DELETE" method="POST">
-                                    <button class="button-secondary" type="submit">DELETE<img src="/assets/images/arrow-white.svg" class="arrow"></button>
+                                    <button class="button-secondary" type="submit"></button>
                                 </form>
                             <% } %>
-                        <% }); %>
-                    <% } else { %>
-                        No Reviews Yet
-                    <% } %>
-                </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    No Reviews Yet
+                <% } %>
             </div>
         </div>
     </section>

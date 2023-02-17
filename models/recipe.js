@@ -29,8 +29,6 @@ const recipeSchema = new Schema({
         ref: 'User',
         required: true
     }, 
-    userName: String,
-    userAvatar: String,
     title: {
         type: String,
         default: function() {
