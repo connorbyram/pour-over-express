@@ -3,84 +3,93 @@
 <div class="main">
     <section>
         <div class="container">
-            <h1>Create a Recipe</h1>
-        </div>
-    </section>
-    <section>
-        <div class="container">
-            <form id="edit-recipe" action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
-                <label >Title:</label>
-                <input type="text" name="title" value="<%= recipe.title %>">
-
-                <div id="bean-data">
-
-                    <label >Roaster:</label>
-                    <input type="text" name="roaster" value="<%= recipe.roaster %>">
-    
-                    <label >Varietal:</label>
-                    <select name="beanVarietal">
-                        <% bean.forEach(function(varietal, idx) { %>
-                            <option value="<%= varietal %>" <%= varietal === recipe.beanVarietal? 'selected' : '' %>>
-                                <%= varietal %>
-                            </option>
-                        <% }); %>
-                    </select>
-                    
-                    <label >Process:</label>
-                    <select name="processMethod">
-                        <% process.forEach(function(method, idx) { %>
-                            <option value="<%= method %>" <%= method === recipe.processMethod? 'selected' : '' %>>
-                                <%= method %>
-                            </option>
-                        <% }); %>
-                    </select>
-                    
-                    <label >Roast Level:</label>
-                    <select name="roastLevel">
-                        <% roast.forEach(function(level, idx) { %>
-                            <option value="<%= level %>" <%= level === recipe.roastLevel? 'selected' : '' %>>
-                                <%= level %>
-                            </option>
-                        <% }); %>
-                    </select>
-                </div>
-
-                <div id="recipe-data">
-                    <label >Grind Size:</label>
-                    <select name="grindSize">
-                        <% grind.forEach(function(size, idx) { %>
-                            <option value="<%= size %>" <%= size === recipe.grindSize? 'selected' : '' %>>
-                                <%= size %>
-                            </option>
-                        <% }); %>
-                    </select>
-    
-                    <label >Coffee(g):</label>
-                    <input type="number" name="gramsCoffee" value="<%= recipe.gramsCoffee %>">
-    
-                    <label >Water(g):</label>
-                    <input type="number" name="gramsWater" value="<%= recipe.gramsWater %>">
-                    
-                    <label >Water Temp.:</label>
-                    <input type="number" name="waterTemp" value="<%= recipe.waterTemp %>">
-                    <select name="tempUnit" id="tempUnit" value="<%= recipe.tempUnit %>">
-                        <option value="°F">°F</option>
-                        <option value="°C">°C</option>
-                        <option value="Kelvin">Kelvin</option>
-                    </select>
-                    
+            <div class="main-div">
+                <h1>Create a Recipe</h1>
+                <form id="new-recipe" action="/recipes" method="POST">
+                    <div class="full">
+                        <label>Title:</label>
+                        <input type="text" name="title" value="<%= recipe.title %>">
+                    </div>
+                    <div class="input-row">
+                        <div class="quarter">
+                            <label>Roaster:</label>
+                            <input type="text" name="roaster" value="<%= recipe.roaster %>">
+                        </div>
+                        <div class="quarter">
+                            <label >Varietal:</label>
+                            <select name="beanVarietal">
+                                <% bean.forEach(function(varietal, idx) { %>
+                                    <option value="<%= varietal %>" <%= varietal === recipe.beanVarietal? 'selected' : '' %>>
+                                        <%= varietal %>
+                                    </option>
+                                <% }); %>
+                            </select>
+                        </div>
+                        <div class="quarter">
+                            <label >Process:</label>
+                            <select name="processMethod">
+                                <% process.forEach(function(method, idx) { %>
+                                    <option value="<%= method %>" <%= method === recipe.processMethod? 'selected' : '' %>>
+                                        <%= method %>
+                                    </option>
+                                <% }); %>
+                            </select>
+                        </div>
+                        <div class="quarter">
+                            <label >Roast Level:</label>
+                            <select name="roastLevel">
+                                <% roast.forEach(function(level, idx) { %>
+                                    <option value="<%= level %>" <%= level === recipe.roastLevel? 'selected' : '' %>>
+                                        <%= level %>
+                                    </option>
+                                <% }); %>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="input-row">
+                        <div class="quarter">
+                            <label >Grind Size:</label>
+                            <select name="grindSize">
+                                <% grind.forEach(function(size, idx) { %>
+                                    <option value="<%= size %>" <%= size === recipe.grindSize? 'selected' : '' %>>
+                                        <%= size %>
+                                    </option>
+                                <% }); %>
+                            </select>
+                        </div>
+                        <div class="fit">
+                            <label >Coffee(g):</label>
+                            <input type="number" name="gramsCoffee" value="<%= recipe.gramsCoffee %>">
+                        </div>
+                        <div class="fit">
+                            <label >Water(g):</label>
+                            <input type="number" name="gramsWater" value="<%= recipe.gramsWater %>">
+                        </div>
+                        <div class="three">
+                            <label >Water Temp.:</label>
+                            <input type="number" name="waterTemp" value="<%= recipe.waterTemp %>">
+                            <select name="tempUnit" id="tempUnit" value="<%= recipe.tempUnit %>">
+                                <option value="°F">°F</option>
+                                <option value="°C">°C</option>
+                                <option value="Kelvin">Kelvin</option>
+                            </select>                      
+                        </div>
+                    </div>           
                     <label >Notes:</label>
-                    <textarea name="notes" id="notes" cols="30" rows="10"><%= recipe.notes %></textarea>
-                    <label>Post to Public Board</label>
-                    <input type="checkbox" name="public" <%= recipe.public? 'checked' : '' %>>
-                </div>
-                
-                <button type="submit">Update Recipe</button>
-            </form>
+                    <textarea class="comment-box" name="notes" id="notes" cols="30" rows="10" placeholder="Give us some relevant information... e.g. bloom water amount & time, subsequent pours, etc"><%= recipe.notes %></textarea>
+                    <div class="flex">
+                        <input type="checkbox" name="public" <%= recipe.public? 'checked' : '' %>>
+                        <label>Post to Public Board</label>
+                    </div>
+                    
+                    <button class="button-main" type="submit">UPDATE<img src="/assets/images/arrow-white.svg" class="arrow"></button>
+                </form>
+            </div>
 
         </div>
     </section>
 </div>
+
 
 
 <%- include('../partials/footer') %>
