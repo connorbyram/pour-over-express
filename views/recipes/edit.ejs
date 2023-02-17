@@ -4,8 +4,8 @@
     <section>
         <div class="container">
             <div class="main-div">
-                <h1>Create a Recipe</h1>
-                <form id="new-recipe" action="/recipes" method="POST">
+                <h1>Update Recipe</h1>
+                <form id="edit-recipe" action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
                     <div class="full">
                         <label>Title:</label>
                         <input type="text" name="title" value="<%= recipe.title %>">
