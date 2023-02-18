@@ -1,0 +1,64 @@
+<%- include('../partials/header') %>
+
+<div class="main">
+    <section>
+        <div class="container">
+            <div class="main-div">
+                <div id="user-header">
+                    <img alt="avatar" id="avatar" src="<%= profile.avatar %>" referrerpolicy="no-referrer">
+                    <div class="title-data">
+                        <h1><%= profile.name %></h1>
+                        <h4>Member since: <%= profile.createdAt.toLocaleDateString() %></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <% recipes.forEach(function(recipe) { %>
+                <% if (user.equals(recipe.user)) { %>
+                    <div id="recipe-preview" class="main-div">
+                        <div id="user-header">
+                            <div class="title-data">
+                                <h3><%= recipe.beanVarietal %></h3>
+                                <h1><%= recipe.title %></h1>
+                                <h4><%= recipe.public? 'Public' : 'Private' %> | <%= recipe.createdAt.toLocaleDateString() %></h4></a>
+                            </div>
+                        </div>
+                        <div class="recipe-data">
+                            <strong><%= recipe.roaster %></strong> 
+                            <strong><%= recipe.processMethod %></strong>
+                            <strong><%= recipe.roastLevel %></strong>
+                        </div>
+                        <a href="/recipes/<%= recipe._id %>" class="button-main">
+                            DETAILS <img src="/assets/images/arrow-white.svg" class="arrow">
+                        </a>
+                    </div>
+                <% } else if (recipe.public) { %>
+                    <div id="recipe-preview" class="main-div">
+                        <div id="user-header">
+                            <div class="title-data">
+                                <h3><%= recipe.beanVarietal %></h3>
+                                <h1><%= recipe.title %></h1>
+                                <h4><%= recipe.public? 'Public' : 'Private' %> | <%= recipe.createdAt.toLocaleDateString() %></h4></a>
+                            </div>
+                        </div>
+                        <div class="recipe-data">
+                            <strong><%= recipe.roaster %></strong> 
+                            <strong><%= recipe.processMethod %></strong>
+                            <strong><%= recipe.roastLevel %></strong>
+                        </div>
+                        <a href="/recipes/<%= recipe._id %>" class="button-main">
+                            DETAILS <img src="/assets/images/arrow-white.svg" class="arrow">
+                        </a>
+                    </div>
+                <% } %>
+            <% }); %>
+            </div>
+        </div>
+
+        
+    </section>
+
+</div>
+
+<%- include('../partials/footer') %>

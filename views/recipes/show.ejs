@@ -8,7 +8,7 @@
                     <img alt="avatar" id="avatar" src="<%= recipe.user.avatar %>" referrerpolicy="no-referrer">
                     <div class="title-data">
                         <h1><%= recipe.title %></h1>
-                        <h4><%= recipe.user.name %> | <%= recipe.createdAt.toLocaleDateString() %></h4>
+                        <a href="/users/<%= recipe.user.id %>"><h4><%= recipe.user.name %> | <%= recipe.createdAt.toLocaleDateString() %></h4></a>
                     </div>
                 </div>
                 <% if (user.equals(recipe.user)) { %>

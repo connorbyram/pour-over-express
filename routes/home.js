@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const User = require('../models/user');
 const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('home', { title: 'Pour Over' });
+  res.render('home', { title: 'Pour Over Express' });
 });
 
 router.get('/auth/google', passport.authenticate(

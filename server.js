@@ -14,6 +14,7 @@ require('./config/passport');
 var homeRouter = require('./routes/home');
 var recipesRouter = require('./routes/recipes');
 var reviewsRouter = require('./routes/reviews');
+var usersRouter = require('./routes/users');
 
 var app = express();
 
@@ -42,6 +43,7 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', homeRouter);
+app.use('/', usersRouter);
 app.use('/recipes', recipesRouter);
 app.use('/', reviewsRouter);
 

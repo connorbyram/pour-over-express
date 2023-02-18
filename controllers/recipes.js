@@ -30,7 +30,7 @@ function edit(req, res) {
     const grind = Recipe.schema.path('grindSize').enumValues;
     Recipe.findOne({_id: req.params.id, user: req.user._id}, 
         function(err, recipe) {
-            res.render('recipes/edit', { title: 'Edit Recipe', bean, process, roast, grind, recipe } )
+            res.render('recipes/edit', { title: 'Edit Recipe | Pour/exp', bean, process, roast, grind, recipe } )
     });
 }
 
@@ -58,14 +58,14 @@ function newRecipe(req, res) {
     const process = Recipe.schema.path('processMethod').enumValues;
     const roast = Recipe.schema.path('roastLevel').enumValues;
     const grind = Recipe.schema.path('grindSize').enumValues;
-    res.render('recipes/new', { title: 'New Recipe', bean, process, roast, grind } )
+    res.render('recipes/new', { title: 'New Recipe | Pour/exp', bean, process, roast, grind } )
 }
 
 function show(req, res){
     Recipe.findById(req.params.id)
         .populate('user')
         .exec(function(err, recipe) {
-        res.render('recipes/show', { title: 'Recipe Details', recipe });
+        res.render('recipes/show', { title: `${recipe.title} | Pour/exp`, recipe });
     });
 }
 
@@ -73,6 +73,6 @@ function index(req, res) {
     Recipe.find({})
         .populate('user')
         .exec(function(err, recipes) {
-        res.render('recipes/index', { title: 'All Recipes', recipes });
+        res.render('recipes/index', { title: 'Browse | Pour/exp', recipes });
     });
 }

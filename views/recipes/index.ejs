@@ -12,7 +12,7 @@
                                 <div class="title-data">
                                     <h3><%= recipe.beanVarietal %></h3>
                                     <h1><%= recipe.title %></h1>
-                                    <h4><%= recipe.user.name %> | <%= recipe.createdAt.toLocaleDateString() %></h4>
+                                    <a href="/users/<%= recipe.user._id %>"><h4><%= recipe.user.name %> | <%= recipe.createdAt.toLocaleDateString() %></h4></a>
                                 </div>
                             </div>
                             <div class="recipe-data">

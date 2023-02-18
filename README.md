@@ -57,7 +57,7 @@ This app allows you to log your own pour-over recipes as well as view and rate o
 
 - Mobile optimization
 - Add a recipe to a favorites list
-- User pages that show user-created recipes and favorited recipes
+- Recipe bookmarking
 - Branching funtionality that allows you to copy/edit another user's recipe
 - Timer/Recipe functionality that guides you through the steps of a recipe
 - Sort recipes by Bean Varietal, Roast Level, Avg. Rating, and Roaster
