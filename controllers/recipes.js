@@ -37,8 +37,8 @@ function edit(req, res) {
 function deleteRecipe(req, res) {
     Recipe.findOneAndDelete(
         { _id: req.params.id, user: req.user._id },
-        function (err) {
-            res.redirect("/recipes");
+        function (err, recipe) {
+            res.redirect(`/users/${recipe.user._id}`);
         }
     );
 }
