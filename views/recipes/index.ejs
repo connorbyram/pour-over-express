@@ -4,6 +4,7 @@
     <section>
         <div class="container">
             <div>
+                <% recipes.sort((a, b) => b.createdAt - a.createdAt) %>
                 <% recipes.forEach(function(recipe) { %>
                     <% if(recipe.public) { %>
                         <div id="recipe-preview" class="main-div">

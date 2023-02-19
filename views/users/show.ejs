@@ -14,6 +14,7 @@
             </div>
         </div>
         <div class="container">
+            <% recipes.sort((a, b) => b.createdAt - a.createdAt) %>
             <% recipes.forEach(function(recipe) { %>
                 <% if (user.equals(recipe.user)) { %>
                     <div id="recipe-preview" class="main-div">
