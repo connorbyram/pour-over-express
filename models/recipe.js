@@ -137,7 +137,10 @@ const recipeSchema = new Schema({
         type: Boolean,
         default: false
     },
-    reviews: [reviewSchema]
+    reviews: [reviewSchema],
+    branch: {
+        type: String
+    }
 }, {
     timestamps: true
 });

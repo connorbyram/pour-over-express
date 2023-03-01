@@ -11,6 +11,8 @@ router.get('/new', ensureLoggedIn, recipesCtrl.new);
 router.get('/:id', ensureLoggedIn, recipesCtrl.show);
 // GET /:id/edit
 router.get('/:id/edit', ensureLoggedIn, recipesCtrl.edit);
+// GET /:id/branch
+router.get('/:id/branch', ensureLoggedIn, recipesCtrl.branch);
 // POST /
 router.post('/', ensureLoggedIn, recipesCtrl.create);
 // POST /:id/update

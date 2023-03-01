@@ -424,9 +424,27 @@ select {
 .flex {
   width: 100%;
   display: flex;
+  align-items: center;
 }
 
 #bottom {
   position: absolute;
   bottom: 0px;
+}
+
+.display-none {
+  display: none;
+}
+
+.branch-icon {
+  margin-right: 15px;
+  height: 40px;
+  width: 40px;
+  display: inline-block !important;
+  position: relative;
+}
+
+.red {
+  color:#FE4D20 !important;
+  text-decoration: none;
 }

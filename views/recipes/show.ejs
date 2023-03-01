@@ -7,8 +7,16 @@
                 <div id="user-header">
                     <img alt="avatar" id="avatar" src="<%= recipe.user.avatar %>" referrerpolicy="no-referrer">
                     <div class="title-data">
-                        <h1><%= recipe.title %></h1>
-                        <a href="/users/<%= recipe.user.id %>"><h4><%= recipe.user.name %> | <%= recipe.createdAt.toLocaleDateString() %></h4></a>
+                        <% if (recipe.branch) { %>
+                            <div class="flex">
+                                <img class="branch-icon" src="/assets/images/branch.svg" alt="Icon of a branch">
+                                <h1><%= recipe.title %></h1>
+                            </div>
+                            <a href="/recipes/<%= recipe.branch %>"><h4>Branched | <%= recipe.createdAt.toLocaleDateString() %></h4></a>
+                        <% } else { %>
+                            <h1><%= recipe.title %></h1>
+                            <a href="/users/<%= recipe.user.id %>"><h4><%= recipe.user.name %> | <%= recipe.createdAt.toLocaleDateString() %></h4></a>
+                        <% } %>
                     </div>
                 </div>
                 <% if (user.equals(recipe.user)) { %>
@@ -37,7 +45,9 @@
                 <div class="button-grid">
                     <% if (user.equals(recipe.user)) { %>
                         <a class="button-main" href="/recipes/<%= recipe._id %>/edit">TWEAK<img src="/assets/images/arrow-white.svg" class="arrow"></a>
-                    <% } %>
+                    <% } else if (!recipe.branch) { %>
+                        <a class="button-main" href="/recipes/<%= recipe._id %>/branch">BRANCH<img src="/assets/images/arrow-white.svg" class="arrow"></a>
+                    <% } else %>
                 </div>
             </div>
         </div>
@@ -65,6 +75,7 @@
         <div class="container">
             <div class="main-div">
                 <h2>Notes</h2>
+                <% recipe.reviews.sort((a, b) => b.createdAt - a.createdAt) %>
                 <% if (recipe.reviews.length) { %>
                     <% recipe.reviews.forEach(function(review) { %>
                         <div id="review">

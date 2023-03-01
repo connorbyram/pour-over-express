@@ -1,3 +1,4 @@
+const User = require('../models/user');
 const Recipe = require("../models/recipe")
 
 module.exports = {
@@ -7,16 +8,30 @@ module.exports = {
     create,
     delete: deleteRecipe,
     edit,
-    update
+    update,
+    branch
 }
 
-function update(req, res){
+function branch(req, res) {
+    const bean = Recipe.schema.path('beanVarietal').enumValues;
+    const process = Recipe.schema.path('processMethod').enumValues;
+    const roast = Recipe.schema.path('roastLevel').enumValues;
+    const grind = Recipe.schema.path('grindSize').enumValues;
+    Recipe.findOne({_id: req.params.id}, 
+        function(err, recipe) {
+            console.log(recipe);
+            res.render('recipes/branch', { title: 'Branch Recipe | Pour/exp', bean, process, roast, grind, recipe } )
+    });
+}
+
+function update(req, res) {
     req.body.public = !!req.body.public;
     Recipe.findOneAndUpdate(
         { _id: req.params.id, user: req.user._id },
         req.body,
         {new: true},
         function(err, recipe) {
+            req.body.user = req.user._id;
             if (err || !recipe) return res.redirect('/recipes');
             res.redirect(`/recipes/${recipe._id}`);
         }

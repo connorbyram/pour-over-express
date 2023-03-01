@@ -4,20 +4,12 @@
     <section>
         <div class="container">
             <div class="main-div">
-                <% if (recipe.branch) { %>
-                    <h1>Update Branch</h1>
-                <% } else { %>
-                    <h1>Update Recipe</h1>
-                <% } %>
-                <form id="edit-recipe" action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
+                <h1>Branch Recipe</h1>
+                <form id="branch-recipe" action="/recipes" method="POST">
                     <div class="full">
-                        <% if (recipe.branch) { %>
-                            <label>Title:</label>
-                            <input type="text" name="title" value="<%= recipe.title %>" readonly>
-                        <% } else { %>
-                            <label>Title:</label>
-                            <input type="text" name="title" value="<%= recipe.title %>">
-                        <% }%>
+                        <label>Title:</label>
+                        <input type="text" name="title" value="<%= recipe.title %>" readonly>
+                        <input class="display-none" type="text" name="branch" value="<%= recipe.id %>" readonly>
                     </div>
                     <div class="input-row">
                         <div class="quarter">
@@ -86,12 +78,12 @@
                     </div>           
                     <label >Notes:</label>
                     <textarea class="comment-box" name="notes" id="notes" cols="30" rows="10" placeholder="Give us some relevant information... e.g. bloom water amount & time, subsequent pours, etc"><%= recipe.notes %></textarea>
-                    <div class="flex">
-                        <input type="checkbox" name="public" <%= recipe.public? 'checked' : '' %>>
+                    <div class="display-none">
+                        <input type="checkbox" name="public" unchecked>
                         <label>Post to Public Board</label>
                     </div>
                     
-                    <button class="button-main" type="submit">UPDATE<img src="/assets/images/arrow-white.svg" class="arrow"></button>
+                    <button class="button-main" type="submit">BRANCH<img src="/assets/images/arrow-white.svg" class="arrow"></button>
                 </form>
             </div>
 
