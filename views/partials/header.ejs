@@ -5,12 +5,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/x-icon" href="/assets/images/squigglemike.svg">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <nav>
-      <div id="nav-links">
+    <!-- Desktop Nav -->
+    <nav class="desktop-nav">
+      <div id="nav-container">
         <% if (user) { %>
           <a href="/users/<%= user._id %>"><img src="<%= user.avatar %>" alt="user-img" id="user-img"></a>
           <div class="nav-links">
@@ -29,6 +31,40 @@
               <a href="/auth/google" class="login">log in&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
             </div>
             <% } %>
+      </div>
+    </nav>
+    <!-- Mobile Nav -->
+    <nav class="mobile-nav">
+      <div id="mnav-container">
+        <div class="mn-links"><a href="/recipes"><img src="/assets/images/browse.svg" alt="plus sign"></a></div>
+        <div id="mnlinks-userlogin" class="mn-links">
+          <% if (user) { %>
+            <a href="/users/<%= user._id %>"><img src="<%= user.avatar %>" alt="user-img" id="mnuser-img"></a>
+          <% } else { %>
+            <img src="/assets/images/squigglemike.svg" alt="logo" id="mnnav-logo">
+          <% } %>
+        </div>
+        <div class="mn-links"><a href="/recipes/new"><img src="/assets/images/add.svg" alt="plus sign"></a></div>
+
+
+        <!-- <% if (user) { %>
+          <a href="/users/<%= user._id %>"><img src="<%= user.avatar %>" alt="user-img" id="user-img"></a>
+          <div class="nav-links">
+            <a href="/">HOME</a>
+            <a href="/recipes">BROWSE</a>
+            <a href="/recipes/new">ADD RECIPE</a>
+          </div>
+          <div class="nav-links" id="bottom">
+            <a href="/logout">log out</a>
+          </div>
+          <% } else { %>
+            <img src="/assets/images/squigglemike.svg" alt="logo" id="nav-logo">
+            <div class="nav-links">
+              <a href="/">Home</a>
+              <a href="/recipes">Browse Recipes</a>
+              <a href="/auth/google" class="login">log in&nbsp;<img src="https://i.imgur.com/FHjYyi0.png"></a>
+            </div>
+            <% } %> -->
       </div>
     </nav>
 

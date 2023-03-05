@@ -38,9 +38,15 @@ p {
   line-height: 1.4em;
 }
 
+/* html {
+  height: -webkit-fill-available;
+} */
+
+
 body {
   margin: 0;
   padding: 0;
+  height: -webkit-fill-available;
   min-height: 100vh;
   background-color: #E8E5E3;
   display: flex;
@@ -50,9 +56,12 @@ body {
   scroll-behavior: smooth;
 }
 
+
+
+
 /* REPEATED ELEMENTS */
 
-nav {
+.desktop-nav {
   padding: 20px 0;
   height: 100vh;
   width: auto;
@@ -62,7 +71,12 @@ nav {
   flex-direction: column;
   background-color: #45474B;
 }
-#nav-links {
+
+.mobile-nav{
+  display: none
+}
+
+#nav-container {
   width:100%;
   display: flex;
   flex-direction: column;
@@ -355,7 +369,7 @@ form {
   padding: 6px 20px;
   margin: 15px 0 15px 0;
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   border: solid 1px black;
   border-radius: 8px;
   background-color: #E8E5E3;
@@ -447,4 +461,65 @@ select {
 .red {
   color:#FE4D20 !important;
   text-decoration: none;
+}
+
+
+
+@media (max-width: 500px) {
+  body {
+    flex-direction: column;
+    background-color: #E8E5E3;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    padding: 8px 0;
+    height: auto;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    z-index: 1;
+    display: flex;
+    background-color: #45474B;
+  }
+
+  #mnav-container {
+    width:100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    justify-content: space-around;
+    flex-direction: row;
+  }
+
+  .mn-links {
+    height: auto;
+    width: auto;
+    font-size: 12px;
+  }
+
+  #mnlinks-userlogin {
+    margin-top: -25px;
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    border: solid 3px #45474B;
+    position: absolute;
+  }
+
+  .mn-links  img {
+    height: 35px;
+    width: 35px;
+    /* object-fit: contain; */
+  }
+
+  #mnuser-img {
+    margin-bottom: 40px;
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
 }
